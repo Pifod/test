@@ -1,0 +1,38 @@
+create table study_database.trip
+(
+    road varchar(60) null,
+    date varchar(60) null,
+    id   int auto_increment
+        primary key
+);
+
+create table study_database.user
+(
+    name varchar(64) null,
+    age  int         null,
+    id   int auto_increment
+        primary key
+);
+
+create table study_database.auto
+(
+    user_id int         null,
+    id      int auto_increment
+        primary key,
+    model   varchar(64) not null,
+    colod   varchar(64) not null,
+    constraint user_id
+        foreign key (user_id) references study_database.user (id)
+            on update cascade on delete cascade
+);
+
+create table study_database.auto_trip
+(
+    auto_id int null,
+    trip_id int null,
+    constraint auto_id
+        foreign key (auto_id) references study_database.auto (id),
+    constraint trip_id
+        foreign key (trip_id) references study_database.trip (id)
+);
+
